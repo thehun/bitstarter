@@ -91,13 +91,18 @@ if(require.main == module) {
     var checkJson;
     if (program.url){
 	rest.get(program.url).on('complete', function(result){
-	    checkJson = checkHtmlFile_url(result, program.checs);
+//	    console.log(result);
+	    checkJson = checkHtmlFile_url(result, program.checks);
+	    var outJson = JSON.stringify(checkJson, null, 4);
+	    console.log(outJson);
 	});
-    }else
+    }
+    else{
 	checkJson = checkHtmlFile(program.file, program.checks);
-
-    var outJson = JSON.stringify(checkJson, null, 4);
-    console.log(outJson);
-} else {
+	var outJson = JSON.stringify(checkJson, null, 4);
+	console.log(outJson);
+    }	
+} 
+else {
     exports.checkHtmlFile = checkHtmlFile;
 }
